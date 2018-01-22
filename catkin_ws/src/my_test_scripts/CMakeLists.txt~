@@ -1,0 +1,66 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(baseline_model_correction)
+
+## Required in order to use C++11 stuff, however some aspects of PCL don't work
+## with C++11, and will cause segmentation faults with no warning at runtime.
+##add_definitions(-std=c++11)
+
+set(Boost_DEBUG 1)
+#set(BOOST_ROOT /usr/lib/boost_1_65_1)
+#set(BOOST_INCLUDEDIR /usr/lib/boost_1_65_1)
+#set(BOOST_LIBRARYDIR /usr/lib/boost_1_65_1/stage/lib)
+
+find_package(PCL REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  sensor_msgs
+  pcl_ros
+  pcl_conversions
+  roslaunch
+)
+
+#find_package(Boost REQUIRED COMPONENTS
+#  algorithm
+#  core
+#)
+
+#find_package(Boost REQUIRED 1.65.1  COMPONENTS
+#  algorithm
+#  core
+#)
+
+## Declare a catkin package
+## this is necessary otherwise the .cpp file won't be callable
+catkin_package()
+
+#${Boost_INCLUDE_DIRS}
+include_directories(include ${catkin_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS} )
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINTIONS})
+
+add_executable(pointcloud_broadcaster src/pointcloud_broadcaster.cpp)
+target_link_libraries(pointcloud_broadcaster ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(don_segmentation_test src/don_segmentation_test.cpp)
+target_link_libraries(don_segmentation_test ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(normal_calculation_test src/normal_calculation_test.cpp)
+target_link_libraries(normal_calculation_test ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(interactive_icp src/interactive_icp.cpp)
+target_link_libraries(interactive_icp ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(pointcloud_stitcher src/pointcloud_stitcher.cpp)
+target_link_libraries(pointcloud_stitcher ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(scan_to_baseline_matcher src/scan_to_baseline_matcher.cpp)
+target_link_libraries(scan_to_baseline_matcher ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(rosbag_reader src/rosbag_reader.cpp)
+target_link_libraries(rosbag_reader ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(testing_script src/testing_script.cpp)
+target_link_libraries(testing_script ${PCL_LIBRARIES} ${catkin_LIBRARIES})
+

@@ -1,0 +1,2 @@
+my_test_scripts
+-DCATKIN_DEVEL_PREFIX=/home/matt/testing_repo/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/matt/testing_repo/catkin_ws/install -G Unix Makefiles

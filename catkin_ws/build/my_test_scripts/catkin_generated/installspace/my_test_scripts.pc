@@ -1,0 +1,8 @@
+prefix=/home/matt/testing_repo/catkin_ws/install
+
+Name: my_test_scripts
+Description: Description of my_test_scripts
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/matt/testing_repo/catkin_ws/install/lib 
+Requires: 
