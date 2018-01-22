@@ -41,6 +41,7 @@ void print3x3Matrix (const Eigen::Matrix3d &matrix)
 
 void printAffine (const Eigen::Affine3d &matrix)
 {
+  //printf ("Transformation matrix :\n");
   printf ("\n");
   printf ("    | %6.3f %6.3f %6.3f %6.3f | \n", matrix (0, 0), matrix (0, 1), matrix (0, 2), matrix (0, 3));
   printf ("T = | %6.3f %6.3f %6.3f %6.3f | \n", matrix (1, 0), matrix (1, 1), matrix (1, 2), matrix (1, 3));
