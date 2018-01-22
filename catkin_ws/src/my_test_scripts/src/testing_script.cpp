@@ -94,7 +94,7 @@ int main()
                   0.007,  0.000,  1.000, -5066.161,
                   0,      0,      0,      1;
   test_affine.rotate(test_matrix.block<3,3>(0,0));
-  test_affine.translate(test_matrix.block<3,1>(0,3));
+  test_affine.translation() << test_matrix(0,3), test_matrix(1,3), test_matrix(2,3);
   invertAffine(test_affine);
   return 0;
 }
